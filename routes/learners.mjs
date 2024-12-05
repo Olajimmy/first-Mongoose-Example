@@ -18,6 +18,16 @@ router.get("/seed", async (req, res) => {
   }
 });
 
+//show route
+router.get("/:id", async (req, res) => {
+  try {
+    const foundLearner = await learners.findById(req.params.id);
+    req.status(200).json(foundLearner);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 router.get("/api/learners", async (req, res) => {
   try {
     const foundLearners = await learners.find({});
